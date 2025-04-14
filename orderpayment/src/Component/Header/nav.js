@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './nav.css'; // Import the CSS file
+import './nav.css'; 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,12 +14,12 @@ const Navbar = () => {
       </div>
 
       <div className={`navbar-links ${isOpen ? 'open' : ''}`}>
-        <a href="#">Home</a>
+        <a href="/">Home</a>
         <a href="#">Menu</a>
         <a href="#">Restaurants</a>
         <a href="#">Contact</a>
         <a href="#">Deliveries</a>
-        <a href="#">My Cart</a>
+        <a href="/cart">My Cart</a>
         
         <button className="login-btn">Login</button>
       </div>
