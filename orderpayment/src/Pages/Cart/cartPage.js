@@ -6,8 +6,7 @@ const Cart = () => {
     return (
         <div>
 
-        <Navbar />
-
+        <h1>My cart</h1>
         </div>
     )
 }

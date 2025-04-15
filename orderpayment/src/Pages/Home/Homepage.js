@@ -2,9 +2,8 @@ import React from "react";
 
 const Home = () => {
     return(
-        <div style={{ padding: '20px' }}>
-            <h1>Welcome to FoodieExpress 🍔</h1>
-            <p>This is the homepage.</p>
+        <div>
+            <h1>Homepage</h1>
         </div>
     )
 }
