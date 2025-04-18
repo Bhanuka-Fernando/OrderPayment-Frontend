@@ -1,4 +1,3 @@
-// src/components/OrderList.js
 import React, { useState } from 'react';
 
 const OrderList = ({ orders, handleRemove, restaurants }) => {
@@ -9,26 +8,26 @@ const OrderList = ({ orders, handleRemove, restaurants }) => {
         0
     );
 
-    const handleRestaurantClick = (restaurantId) => {
-        const restaurant = restaurants.find(r => r.restaurantId === restaurantId);
-        const restaurantName = restaurant ? restaurant.restaurantName : "Unknown";
-    
+    const handleRestaurantClick = (restaurantName) => {
+   
+
         const filtered = [];
-    
+
         orders.forEach(order => {
             (order.items || []).forEach(item => {
+                console.log("Checking item:", item);
+                // Now compare restaurantId from order's item with restaurantName from restaurant model
                 if (item.restaurantId === restaurantName) {
                     filtered.push({
                         ...item,
-                        orderId: order.id // ⚠️ Attach orderId for later use
+                        orderId: order.id
                     });
                 }
             });
         });
-    
+
         setFilteredItems(filtered);
     };
-    
 
     return (
         <div>
@@ -36,32 +35,54 @@ const OrderList = ({ orders, handleRemove, restaurants }) => {
                 <p>Your cart is empty</p>
             ) : (
                 <div>
-                    <div>
+                    <h2>Filter by Restaurant:</h2>
+                    <div style={{ marginBottom: '1rem' }}>
                         {restaurants.map(restaurant => (
-                            <div key={restaurant.restaurantId}>
-                                <button onClick={() => handleRestaurantClick(restaurant.restaurantId)}>
-                                    {restaurant.restaurantName}
-                                    
-                                </button>
-                            </div>
+                            <button
+                                key={restaurant._id}
+                                onClick={() => handleRestaurantClick(restaurant.restaurantName)} // Pass restaurantName
+                                style={{
+                                    marginRight: '10px',
+                                    padding: '8px 12px',
+                                    backgroundColor: '#007bff',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '4px',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                {restaurant.restaurantName}
+                            </button>
                         ))}
                     </div>
 
                     <div>
                         {filteredItems.length > 0 ? (
-                            
                             <ul>
                                 {filteredItems.map((item, index) => (
-                                    <li key={index}>
-                                        <h1>Order Status : {item.status}</h1>
-                                        {item.name} - Quantity: {item.quantity} - Price: ${item.price} 
-                                        <button onClick={() => handleRemove(item.orderId, item.itemId)}>Remove</button>
-
+                                    <li key={index} style={{ marginBottom: '1rem' }}>
+                                        <h4>Order Status: {item.status}</h4>
+                                        {item.name} - Quantity: {item.quantity} - Price: ${item.price}
+                                        <br />
+                                        <button
+                                            onClick={() => handleRemove(item.orderId, item.itemId)}
+                                            style={{
+                                                marginTop: '5px',
+                                                backgroundColor: 'red',
+                                                color: 'white',
+                                                border: 'none',
+                                                padding: '5px 10px',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer'
+                                            }}
+                                        >
+                                            Remove
+                                        </button>
                                     </li>
                                 ))}
                             </ul>
                         ) : (
-                            <p></p>
+                            <p>Select a restaurant to view its items</p>
                         )}
                     </div>
                 </div>
