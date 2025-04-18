@@ -1,12 +1,33 @@
 // src/components/OrderList.js
-import React from 'react';
-
+import React, { useState } from 'react';
 
 const OrderList = ({ orders, handleRemove, restaurants }) => {
+    const [filteredItems, setFilteredItems] = useState([]);
+
     const totalItems = orders.reduce(
         (total, order) => total + (order.items ? order.items.length : 0),
         0
     );
+
+    const handleRestaurantClick = (restaurantId) => {
+        const restaurant = restaurants.find(r => r.restaurantId === restaurantId);
+        const restaurantName = restaurant ? restaurant.restaurantName : "Unknown";
+    
+        const filtered = [];
+    
+        orders.forEach(order => {
+            (order.items || []).forEach(item => {
+                if (item.restaurantId === restaurantName) {
+                    filtered.push({
+                        ...item,
+                        orderId: order.id // ⚠️ Attach orderId for later use
+                    });
+                }
+            });
+        });
+    
+        setFilteredItems(filtered);
+    };
     
 
     return (
@@ -14,32 +35,35 @@ const OrderList = ({ orders, handleRemove, restaurants }) => {
             {totalItems === 0 ? (
                 <p>Your cart is empty</p>
             ) : (
-                
                 <div>
                     <div>
-                    {restaurants.map(restaurant => (
-                        <div key={restaurant.restaurantId}>
-                            <ul>
-                            <h3>{restaurant.restaurantName}</h3>
-                            </ul>
-                        </div>
-                    ))}
+                        {restaurants.map(restaurant => (
+                            <div key={restaurant.restaurantId}>
+                                <button onClick={() => handleRestaurantClick(restaurant.restaurantId)}>
+                                    {restaurant.restaurantName}
+                                    
+                                </button>
+                            </div>
+                        ))}
                     </div>
+
                     <div>
-                    {orders.map(order => (
-                        <div key={order.id}>
+                        {filteredItems.length > 0 ? (
+                            
                             <ul>
-                                {order.items && order.items.map(item => (
-                                    <li key={item.itemId}>
-                                        {item.name} - Quantity: {item.quantity} - Price: ${item.price} -
-                                         <button onClick={() => handleRemove(order.id)}>Remove</button>
+                                {filteredItems.map((item, index) => (
+                                    <li key={index}>
+                                        <h1>Order Status : {item.status}</h1>
+                                        {item.name} - Quantity: {item.quantity} - Price: ${item.price} 
+                                        <button onClick={() => handleRemove(item.orderId, item.itemId)}>Remove</button>
+
                                     </li>
                                 ))}
                             </ul>
-                        </div>
-                    ))}
+                        ) : (
+                            <p></p>
+                        )}
                     </div>
-                    
                 </div>
             )}
         </div>

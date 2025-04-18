@@ -38,30 +38,34 @@ const Cart = () => {
         });
     }, []);
 
-    const handleRemove = async(orderId) => {
-        try{
-            await axios.delete(`/api/orders/${orderId}`);
-            setOrders(prevOrders => prevOrders.filter(order => order._id !== orderId));
-
-        }catch(error){
+    const handleRemove = async (orderId, itemId) => {
+        try {
+            await axios.delete(`/api/orders/${orderId}/items/${itemId}`);
+            // Update local state
+            setOrders(prevOrders =>
+                prevOrders.map(order =>
+                    order.id === orderId
+                        ? {
+                              ...order,
+                              items: order.items.filter(item => item.itemId !== itemId)
+                          }
+                        : order
+                ).filter(order => order.items.length > 0) // remove empty orders
+            );
+        } catch (error) {
             console.error('Error removing item:', error);
             alert('Failed to remove item');
         }
-    }
+    };
+    
 
-    if(loading){
-        return <div>Loading cart .. </div>
-    }
-
-    if (error){
-        return <div>Error : {error}</div>
-    }
+    
 
 
     return (
         <div>
 
-            <h1>Order Status : </h1>
+            
             <OrderList orders={orders} handleRemove={handleRemove} restaurants={restaurants}/>
         </div>
     )
