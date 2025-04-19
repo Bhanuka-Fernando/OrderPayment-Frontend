@@ -3,7 +3,6 @@ import axios from "axios";
 import OrderList from "./orderList";
 
 
-
 const Cart = () => {
 
     const [orders,setOrders] = useState([]);
@@ -41,7 +40,7 @@ const Cart = () => {
     const handleRemove = async (orderId, itemId) => {
         try {
             await axios.delete(`/api/orders/${orderId}/items/${itemId}`);
-            // Update local state
+
             setOrders(prevOrders =>
                 prevOrders.map(order =>
                     order.id === orderId
@@ -50,7 +49,7 @@ const Cart = () => {
                               items: order.items.filter(item => item.itemId !== itemId)
                           }
                         : order
-                ).filter(order => order.items.length > 0) // remove empty orders
+                ).filter(order => order.items.length > 0) 
             );
         } catch (error) {
             console.error('Error removing item:', error);
@@ -67,6 +66,7 @@ const Cart = () => {
 
             
             <OrderList orders={orders} handleRemove={handleRemove} restaurants={restaurants}/>
+            
         </div>
     )
 }

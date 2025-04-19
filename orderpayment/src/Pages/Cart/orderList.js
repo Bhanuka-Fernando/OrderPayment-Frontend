@@ -1,26 +1,22 @@
 import React, { useState } from 'react';
+import PaymentDetails from './paymentDetails';
 
 const OrderList = ({ orders, handleRemove, restaurants }) => {
     const [filteredItems, setFilteredItems] = useState([]);
 
-    const totalItems = orders.reduce(
-        (total, order) => total + (order.items ? order.items.length : 0),
-        0
-    );
+    const subtotal = filteredItems.reduce((sum, item) => sum + (item.price*item.quantity), 0);
 
     const handleRestaurantClick = (restaurantName) => {
-   
-
         const filtered = [];
 
         orders.forEach(order => {
             (order.items || []).forEach(item => {
                 console.log("Checking item:", item);
-                // Now compare restaurantId from order's item with restaurantName from restaurant model
                 if (item.restaurantId === restaurantName) {
                     filtered.push({
                         ...item,
-                        orderId: order.id
+                        orderId: order.id,
+                        quantity:item.quantity || 1
                     });
                 }
             });
@@ -29,64 +25,70 @@ const OrderList = ({ orders, handleRemove, restaurants }) => {
         setFilteredItems(filtered);
     };
 
+    const handleIncrease = (index) => {
+        const updatedItems = [...filteredItems];
+        updatedItems[index].quantity += 1;
+        setFilteredItems(updatedItems);
+    };
+
+    const handleDecrease = (index) => {
+        const updatedItems = [...filteredItems];
+        if(updatedItems[index].quantity > 1){
+            updatedItems[index].quantity -= 1;
+            setFilteredItems(updatedItems);
+        }
+    };
+
     return (
         <div>
-            {totalItems === 0 ? (
-                <p>Your cart is empty</p>
-            ) : (
+           
                 <div>
                     <h2>Filter by Restaurant:</h2>
-                    <div style={{ marginBottom: '1rem' }}>
+                    <div >
                         {restaurants.map(restaurant => (
                             <button
                                 key={restaurant._id}
-                                onClick={() => handleRestaurantClick(restaurant.restaurantName)} // Pass restaurantName
-                                style={{
-                                    marginRight: '10px',
-                                    padding: '8px 12px',
-                                    backgroundColor: '#007bff',
-                                    color: 'white',
-                                    border: 'none',
-                                    borderRadius: '4px',
-                                    cursor: 'pointer'
-                                }}
+                                onClick={() => handleRestaurantClick(restaurant.restaurantName)} 
                             >
                                 {restaurant.restaurantName}
                             </button>
                         ))}
                     </div>
-
+                    <div>
+                    <h4>Order Status: </h4>
+                    </div>
                     <div>
                         {filteredItems.length > 0 ? (
+                            <>
                             <ul>
                                 {filteredItems.map((item, index) => (
                                     <li key={index} style={{ marginBottom: '1rem' }}>
-                                        <h4>Order Status: {item.status}</h4>
-                                        {item.name} - Quantity: {item.quantity} - Price: ${item.price}
+                                        
+                                        Item Name : {item.name} <br />
+
+                                        <button onClick={() => handleDecrease(index)}>-</button>
+                                        <span style={{ margin: '0 10px' }}>
+                                        Quantity : {item.quantity} </span> 
+                                        <button onClick={() => handleIncrease(index)}>+</button>
+                                      
+                                        <br />Price : ${item.price}
                                         <br />
                                         <button
                                             onClick={() => handleRemove(item.orderId, item.itemId)}
-                                            style={{
-                                                marginTop: '5px',
-                                                backgroundColor: 'red',
-                                                color: 'white',
-                                                border: 'none',
-                                                padding: '5px 10px',
-                                                borderRadius: '4px',
-                                                cursor: 'pointer'
-                                            }}
                                         >
                                             Remove
                                         </button>
                                     </li>
                                 ))}
                             </ul>
+                            <PaymentDetails subtotal={subtotal} />
+                            </>
                         ) : (
                             <p>Select a restaurant to view its items</p>
                         )}
                     </div>
                 </div>
-            )}
+           
         </div>
     );
 };
