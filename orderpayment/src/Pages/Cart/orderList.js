@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PaymentDetails from './paymentDetails';
 
 const OrderList = ({ orders, handleRemove, restaurants }) => {
     const [filteredItems, setFilteredItems] = useState([]);
+    const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
     const subtotal = filteredItems.reduce((sum, item) => sum + (item.price*item.quantity), 0);
 
     const handleRestaurantClick = (restaurantName) => {
+        setSelectedRestaurant(restaurantName)
         const filtered = [];
 
         orders.forEach(order => {
@@ -24,6 +26,15 @@ const OrderList = ({ orders, handleRemove, restaurants }) => {
 
         setFilteredItems(filtered);
     };
+
+    // to select restaurant at first
+    useEffect(() => {
+        if(restaurants.length > 0 && !selectedRestaurant){
+            const firstRestaurant = restaurants[0].restaurantName;
+            setSelectedRestaurant(firstRestaurant);
+            handleRestaurantClick(firstRestaurant);
+        }
+    }, [restaurants])
 
     const handleIncrease = (index) => {
         const updatedItems = [...filteredItems];
@@ -71,7 +82,7 @@ const OrderList = ({ orders, handleRemove, restaurants }) => {
                                         Quantity : {item.quantity} </span> 
                                         <button onClick={() => handleIncrease(index)}>+</button>
                                       
-                                        <br />Price : ${item.price}
+                                        <br />Price : LKR {item.price}
                                         <br />
                                         <button
                                             onClick={() => handleRemove(item.orderId, item.itemId)}
