@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+.cart-page{
+    margin-left: 20px;
+}
+
+/* Heading */
+.cart-heading{
+    font-size: 25px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+    margin-top: -10px;
+}
+
+.cart-heading hr{
+    background-color: rgb(86, 86, 86);
+    height: 2px;
+    margin-right: 20px;
+    margin-top: -25px;
+}
+
+/* restaurant navigation btns */
+.rest-btn {
+    font-family:"Inria Sans", sans-serif ;
+    background-color: #FFE8E9;
+    color: black;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 12px;
+    border-color: 2px solid black;
+    text-align: center;
+    margin-right: 25px;
+    margin-top: 10px;
+    padding: 10px;
+    width: 150px;
+}
+
+.rest-btn:hover {
+    background-color: rgb(215, 232, 240);
+}
+
+.selected-button {
+    background: #c5b5b5;
+    color: #000000;
+}
+
+/* order status display */
+.order-status{
+    background-color: #FFE8E9 ;
+    width: 360px;
+    padding: 0.2px 0px 0.2px 30px;
+    border-radius: 10px;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.order-status h4{
+    margin-left: -15px;
+}
+
+.order-status button{
+    font-family:"Inria Sans", sans-serif ;
+    background-color: #FFC164;
+    color: black;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 35px;
+    border-color: 2px solid black;
+    text-align: center;
+    margin: 0px 0px 0px 20px;
+    padding: 7px;
+    width: 200px;
+}
+
+
+/* CART ORDERS */
+.cart-orders {
+    width: 430px;
+} 
+
+.cart-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px;
+}
+
+.cart-item {
+    display: flex;
+    background-color: #FFE8E9;
+    border-radius: 12px;
+    width: 360px;
+    padding: 15px;
+    margin: 20px 0px 0px 0px;
+
+}
+
+.order-details{
+    width: 200px;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: -25px;
+    line-height: 30px;
+
+}
+
+.item-name {
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: -10px;
+}
+
+.item-price {
+    font-weight: 400;
+    font-size: 1rem;
+    margin-bottom: -10px;
+}
+.item-price b{
+    font-weight:bolder;
+}
+
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    margin-top: -25px;
+}
+
+.quantity-btn {
+    background-color: #898888;
+    color: #fff;
+    border: none;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0px 0px 10px;
+
+}
+
+.quantity{
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+.remove-btn {
+    background-color: #881A1C;
+    color: #fff;
+    border: none;
+    margin-top: 15px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    /* transition: background-color 0.3s ease; */
+}
+
+/* .remove-btn:hover {
+    background-color: #c62828;
+} */
+
+
+/* order image */
+.order-image{
+    width: 150px;
+    height: 150px;
+    background-color: black;
+    border-radius: 20px;
+    margin-left: 15px;
+}
+
+.item-image{
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+}
+
+/* Division one */
+.division{
+    display: flex;
+}
+
+.payment-page{
+    margin-top: -45px;
+    margin-left: 450px;
+}
+
+/* Empty cart orders */
+.empty-cart-container {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #FFE8E9;
+    border-radius: 16px;
+    margin: 50px auto;
+    width: 635px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.empty-cart-msg {
+    font-size: 20px;
+    font-weight: 600;
+    color: #c50303;
+    margin-bottom: 40px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    line-height: 30px;
+    letter-spacing: 2px;
+}
+
+.go-home-btn {
+    padding: 18px 40px;
+    width: 350px;
+    font-size: 17px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    background-color: #C5CA96;
+    border: none;
+    border-radius: 8px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.go-home-btn:hover {
+    background-color: #9fa76c;
+}

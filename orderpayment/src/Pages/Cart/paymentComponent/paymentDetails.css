@@ -1,0 +1,139 @@
+
+.payment-container {
+    background-color: #FFE8E9;
+    border-radius: 12px;
+    border: 0.5px solid black;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    width: 400px;
+    height: 570px;
+    margin-top: -10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.payment-secure{
+    font-size: 10px;
+    margin-left: 370px;
+    margin-top: -5px;
+}
+
+.payment-title {
+    margin-top: 0px;
+    text-align: center;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 600;
+    color: #000000;
+    font-size: 40px;
+    letter-spacing: 1.5px;
+}
+
+.payment-section {
+    margin-bottom: 40px;
+}
+
+.payment-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    color: #454545;
+    margin-left: 47px;
+    margin-right: 49px;
+}
+
+.total-row {
+    font-size: 18px;
+    color: #454545;
+}
+
+.payment-divider {
+    margin: 10px 47px 10px 47px;
+    border: none;
+    border-top: 1px solid #000000;
+}
+
+/* .payment-method-section {
+    
+} */
+
+.payment-method-title {
+    font-weight: 600;
+    font-size: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-bottom: 20px;
+    color: #000000;
+    margin-left: 45px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff67;
+    padding: 7px 20px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    gap: 12px;
+    margin-left: 45px;
+    margin-right: 45px;
+}
+
+.radio-label:hover {
+    background-color: #f0f0f0;
+}
+
+.radio-label input[type="radio"] {
+    accent-color: #000000;
+    transform: scale(1.2);
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.radio-label svg {
+    font-size: 22px;
+    color: #0b8626;
+}
+
+.radio-label hr {
+    display: none; 
+}
+
+.checkout-button {
+    width: 350px;
+    padding: 14px;
+    background-color: #C5CA96;
+    color: #000000;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 17px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 25px;
+    margin-left: 25px;
+    letter-spacing: 1px;
+}
+
+.checkout-button:hover {
+    background-color: #2a5400;
+    color: white;
+    transform: translateY(-1px);
+}
+
+.payment-rule{
+    font-weight: lighter;
+    text-align: center;
+    margin-top: 15px;
+    line-height: 15px;
+}
+
+.highlight-link {
+    color: red;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+

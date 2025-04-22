@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import OrderList from "./orderList";
+import OrderList from "../orderListPage/orderList";
 
 
 const Cart = () => {
