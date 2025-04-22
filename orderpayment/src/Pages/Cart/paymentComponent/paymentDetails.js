@@ -24,7 +24,7 @@ const PaymentDetails = ({ subtotal = 0, deliveryFee = 300, handlingFee = 150, on
                     'Content-Type':'application/json',
                 },
                 body:JSON.stringify({
-                    amount: subtotal, 
+                    amount: total, 
                     quantity: 1,
                     currency: 'LKR',
                     name: 'books',

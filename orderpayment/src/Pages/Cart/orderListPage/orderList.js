@@ -10,15 +10,16 @@ const OrderList = ({ orders, handleRemove, restaurants }) => {
     const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
     const subtotal = filteredItems.reduce((sum, item) => sum + (item.price*item.quantity), 0);
+    console.log("price",subtotal);
 
-    const handleRestaurantClick = (restaurantName) => {
-        setSelectedRestaurant(restaurantName)
+    const handleRestaurantClick = (name) => {
+        setSelectedRestaurant(name)
         const filtered = [];
 
         orders.forEach(order => {
             (order.items || []).forEach(item => {
                 console.log("Checking item:", item);
-                if (item.restaurantId === restaurantName) {
+                if (item.restaurantId === name) {
                     filtered.push({
                         ...item,
                         orderId: order.id,
@@ -34,7 +35,7 @@ const OrderList = ({ orders, handleRemove, restaurants }) => {
     // to select restaurant at first
     useEffect(() => {
         if(restaurants.length > 0 && !selectedRestaurant){
-            const firstRestaurant = restaurants[0].restaurantName;
+            const firstRestaurant = restaurants[0].name;
             setSelectedRestaurant(firstRestaurant);
             handleRestaurantClick(firstRestaurant);
         }
@@ -65,12 +66,12 @@ const OrderList = ({ orders, handleRemove, restaurants }) => {
                     <div >
                         {restaurants.map(restaurant => (
                             <button
-                            className={`rest-btn ${selectedRestaurant === restaurant.restaurantName ? 'selected-button' : ''}`}
+                            className={`rest-btn ${selectedRestaurant === restaurant.name ? 'selected-button' : ''}`}
                                 key={restaurant._id}
-                                onClick={() => handleRestaurantClick(restaurant.restaurantName)} 
+                                onClick={() => handleRestaurantClick(restaurant.name)} 
                                
                             >
-                                {restaurant.restaurantName}
+                                {restaurant.name}
                             </button>
                         ))}
                     </div>
