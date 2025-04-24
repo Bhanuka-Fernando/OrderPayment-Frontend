@@ -1,0 +1,27 @@
+/* Add to your existing CSS file or create Dashboard.css */
+.dashboard-content {
+    margin-left: 250px; /* Same as sidebar width */
+    padding: 20px;
+    transition: margin 0.3s ease;
+  }
+  
+  .dashboard-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .dashboard-description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .dashboard-content {
+      margin-left: 0;
+      padding-top: 70px; /* Space for mobile header if you have one */
+    }
+  }

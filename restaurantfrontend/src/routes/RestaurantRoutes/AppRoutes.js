@@ -1,7 +1,7 @@
 // src/routes/AppRoutes.js
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import AddRestaurantForm from "../../componenets/Restaurants/AddRestaurantForm";
+import AddRestaurantForm from "../../components/Restaurants/AddRestaurantForm";
 import OwnerRoutes from "./OwnerRoutes";
 import AdminRoutes from "../AdminRoutes/AdminRoutes";
 

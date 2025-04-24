@@ -1,10 +1,10 @@
 // src/routes/OwnerRoutes.js
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Sidebar from "../../componenets/Sidebar/Sidebar";
-import Dashboard from "../../componenets/Dashboard/Dashboard";
-import RestaurantDetails from "../../componenets/Restaurants/RestaurantDetails";
-import AddMenuItemForm from "../../componenets/MenuItem/AddMenuItemForm";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import Dashboard from "../../components/Dashboard/Dashboard";
+import RestaurantDetails from "../../components/Restaurants/RestaurantDetails";
+import AddMenuItemForm from "../../components/MenuItem/AddMenuItemForm";
 
 
 const OwnerRoutes = () => {
