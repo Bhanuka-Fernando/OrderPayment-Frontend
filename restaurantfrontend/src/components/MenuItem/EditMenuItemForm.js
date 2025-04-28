@@ -19,7 +19,7 @@ const EditMenuItemForm = ({ item, onClose, onUpdate }) => {
         price: parseFloat(cleanedPrice),
       };
 
-      await axios.put(`http://localhost:8080/api/menu/update/${item.id}`, updatedItem);
+      await axios.put(`http://localhost:8081/api/menu/update/${item.id}`, updatedItem);
       alert("Menu item updated!");
       onUpdate(); // reload list
       onClose();  // close modal or form

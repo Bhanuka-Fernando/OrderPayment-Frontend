@@ -9,7 +9,7 @@ const MenuItemTable = ({ restaurantId }) => {
 
   const fetchMenuItems = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/menu/${restaurantId}`);
+      const response = await axios.get(`http://localhost:8081/api/menu/${restaurantId}`);
       setMenuItems(response.data);
     } catch (error) {
       console.error("Error fetching menu items:", error);
@@ -24,7 +24,7 @@ const MenuItemTable = ({ restaurantId }) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this item?");
     if (!confirmDelete) return;
     try {
-      await axios.delete(`http://localhost:8080/api/menu/${id}`);
+      await axios.delete(`http://localhost:8081/api/menu/${id}`);
       setMenuItems(menuItems.filter(item => item.id !== id));
     } catch (error) {
       console.error("Delete error:", error);

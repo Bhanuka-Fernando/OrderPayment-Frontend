@@ -28,7 +28,7 @@ const RestaurantDetails = () => {
   const restaurantId = localStorage.getItem("restaurantId");
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/restaurants/${restaurantId}`)
+    axios.get(`http://localhost:8081/api/restaurants/${restaurantId}`)
       .then(res => {
         setRestaurant(res.data);
         setFormData(res.data);
@@ -38,7 +38,7 @@ const RestaurantDetails = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:8080/api/restaurants/${restaurantId}`, formData);
+      await axios.put(`http://localhost:8081/api/restaurants/${restaurantId}`, formData);
       alert("Profile updated successfully");
       setEditMode(false);
       setRestaurant(formData);
@@ -51,7 +51,7 @@ const RestaurantDetails = () => {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this profile?")) {
       try {
-        await axios.delete(`http://localhost:8080/api/restaurants/${restaurantId}`);
+        await axios.delete(`http://localhost:8081/api/restaurants/${restaurantId}`);
         alert("Profile deleted successfully");
         localStorage.removeItem("restaurantId");
         window.location.href = "/owner/dashboard";

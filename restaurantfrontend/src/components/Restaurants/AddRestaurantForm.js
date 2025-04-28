@@ -11,6 +11,7 @@ const AddRestaurantForm = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
+      password: "",
       email: "",
       phone: "",
       address: "",
@@ -20,6 +21,7 @@ const AddRestaurantForm = () => {
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Name is required"),
+      password: Yup.string().required("Password is required"),
       email: Yup.string().email("Invalid email").required("Email is required"),
       phone: Yup.string().required("Phone is required"),
       address: Yup.string().required("Address is required"),
@@ -40,7 +42,7 @@ const AddRestaurantForm = () => {
         };
 
         const response = await axios.post(
-          "http://localhost:8080/api/restaurants/register",
+          "http://localhost:8081/api/restaurants/register",
           formattedValues
         );
 
@@ -49,7 +51,7 @@ const AddRestaurantForm = () => {
 
         alert("Restaurant registered successfully!");
         resetForm();
-        navigate("/owner/dashboard");
+        navigate("/");
       } catch (error) {
         alert(`Failed to register restaurant: ${error.response?.data?.message || error.message}`);
         console.error("Registration error:", error);
@@ -79,6 +81,21 @@ const AddRestaurantForm = () => {
           />
           {formik.touched.name && formik.errors.name && (
             <div className="error">{formik.errors.name}</div>
+          )}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+          />
+          {formik.touched.password && formik.errors.password && (
+            <div className="error">{formik.errors.password}</div>
           )}
         </div>
 

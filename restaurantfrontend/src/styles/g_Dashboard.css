@@ -1,27 +1,43 @@
-/* Add to your existing CSS file or create Dashboard.css */
 .dashboard-content {
-    margin-left: 250px; /* Same as sidebar width */
-    padding: 20px;
-    transition: margin 0.3s ease;
+  margin-left: 250px; /* Same as sidebar width */
+  padding: 30px 40px;
+  background: #f9fafb;
+  min-height: 100vh;
+  transition: margin 0.3s ease, background 0.3s ease;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+}
+
+.dashboard-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.dashboard-description {
+  font-size: 1.125rem;
+  color: #4a5568;
+  margin-bottom: 30px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-content {
+    margin-left: 0;
+    padding: 20px 15px 70px 15px; /* Space for mobile header if you have one */
   }
-  
+
   .dashboard-title {
-    font-size: 32px;
-    font-weight: 600;
-    color: #333;
+    font-size: 1.75rem;
     margin-bottom: 10px;
   }
-  
+
   .dashboard-description {
-    font-size: 16px;
-    color: #666;
+    font-size: 1rem;
     margin-bottom: 20px;
   }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .dashboard-content {
-      margin-left: 0;
-      padding-top: 70px; /* Space for mobile header if you have one */
-    }
-  }
+}

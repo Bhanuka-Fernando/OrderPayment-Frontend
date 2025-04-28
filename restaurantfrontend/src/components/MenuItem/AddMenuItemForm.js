@@ -28,7 +28,7 @@ const AddMenuItemForm = ({ restaurantId }) => {
       price: priceAsNumber,
     };
 
-       await axios.post("http://localhost:8080/api/menu/add", newItem);
+       await axios.post("http://localhost:8081/api/menu/add", newItem);
       alert("Menu item added successfully!");
       setMenuItem({ name: "", description: "", price: "", imagePath: "" });
     } catch (err) {
