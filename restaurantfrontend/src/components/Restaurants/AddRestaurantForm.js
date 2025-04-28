@@ -17,7 +17,8 @@ const AddRestaurantForm = () => {
       address: "",
       openingTime: "",
       closingTime: "",
-      ownerName: ""
+      ownerName: "",
+      image: ""
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Name is required"),
@@ -32,6 +33,7 @@ const AddRestaurantForm = () => {
         .required("Closing time is required")
         .matches(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/, "Must be valid time (HH:MM)"),
       ownerName: Yup.string().required("Owner name is required")
+
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
@@ -188,6 +190,21 @@ const AddRestaurantForm = () => {
           />
           {formik.touched.ownerName && formik.errors.ownerName && (
             <div className="error">{formik.errors.ownerName}</div>
+          )}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="image">Restaurant Image</label>
+          <input
+            type="text"
+            id="image"
+            name="image"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.image}
+          />
+          {formik.touched.image && formik.errors.image && (
+            <div className="error">{formik.errors.image}</div>
           )}
         </div>
 

@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../../styles/g_RestaurantDetails.css";
 
-
 const isRestaurantOpen = (openingTime, closingTime) => {
-  if (!openingTime || !closingTime) return false; // return false if undefined
-
+  if (!openingTime || !closingTime) return false;
   const now = new Date();
   const [openHour, openMin] = openingTime.split(":").map(Number);
   const [closeHour, closeMin] = closingTime.split(":").map(Number);
@@ -18,8 +16,6 @@ const isRestaurantOpen = (openingTime, closingTime) => {
 
   return now >= open && now <= close;
 };
-
-
 
 const RestaurantDetails = () => {
   const [restaurant, setRestaurant] = useState(null);
@@ -63,73 +59,74 @@ const RestaurantDetails = () => {
   };
 
   const handleChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value});
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   if (!restaurant) return <p>Loading...</p>;
 
- 
   const openStatus = restaurant?.openingTime && restaurant?.closingTime
-  ? isRestaurantOpen(
-      restaurant.openingTime,
-      restaurant.closingTime
-    )
-  : false;
-
-
-  
-
-
+    ? isRestaurantOpen(restaurant.openingTime, restaurant.closingTime)
+    : false;
 
   return (
     <div className="restaurant-profile">
-      <h2>Restaurant Profile</h2>
+      {restaurant.image && (
+        <div className="restaurant-image-container">
+          <img src={restaurant.image} alt="Restaurant" className="restaurant-image" />
+        </div>
+      )}
+      <h2 className="profile-title">Restaurant Profile</h2>
+
       {editMode ? (
-        <>
-          <input name="name" value={formData.name} onChange={handleChange} />
-          <input name="email" value={formData.email} onChange={handleChange} />
-          <input name="phone" value={formData.phone} onChange={handleChange} />
-          <input name="address" value={formData.address} onChange={handleChange} />
-          <input name="ownerName" value={formData.ownerName} onChange={handleChange} />
-          <label>Opening Time</label>
-    <input
-      type="time"
-      name="openingTime"
-      value={formData.openingTime || ""}
-      onChange={handleChange}
-    />
+        <div className="form-section">
+          <input name="name" value={formData.name} onChange={handleChange} placeholder="Restaurant Name" />
+          <input name="email" value={formData.email} onChange={handleChange} placeholder="Email" />
+          <input name="password" value={formData.password} onChange={handleChange} placeholder="Password" />
+          <input name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone Number" />
+          <input name="address" value={formData.address} onChange={handleChange} placeholder="Address" />
+          <input name="ownerName" value={formData.ownerName} onChange={handleChange} placeholder="Owner Name" />
+          <input name="image" value={formData.image} onChange={handleChange} placeholder="Image" />
+          
+          <div className="time-fields">
+            <div>
+              <label>Opening Time</label>
+              <input type="time" name="openingTime" value={formData.openingTime || ""} onChange={handleChange} />
+            </div>
+            <div>
+              <label>Closing Time</label>
+              <input type="time" name="closingTime" value={formData.closingTime || ""} onChange={handleChange} />
+            </div>
+          </div>
 
-    <label>Closing Time</label>
-    <input
-      type="time"
-      name="closingTime"
-      value={formData.closingTime || ""}
-      onChange={handleChange}
-    />
-
-          <button onClick={handleUpdate}>Save</button>
-          <button onClick={() => setEditMode(false)}>Cancel</button>
-        </>
+          <div className="button-group">
+            <button onClick={handleUpdate} className="save-button">Save</button>
+            <button onClick={() => setEditMode(false)} className="cancel-button">Cancel</button>
+          </div>
+        </div>
       ) : (
-        <>
-          <p><strong>Name:</strong> {restaurant.name}</p>
-          <p><strong>Email:</strong> {restaurant.email}</p>
-          <p><strong>Phone:</strong> {restaurant.phone}</p>
-          <p><strong>Address:</strong> {restaurant.address}</p>
-          <p><strong>Owner:</strong> {restaurant.ownerName}</p>
-          <p><strong>Opening Time:</strong> {restaurant.openingTime}</p>
-<p><strong>Closing Time:</strong> {restaurant.closingTime}</p>
+        <div className="details-section">
+          <div className="info-group">
+            <p><strong>Name:</strong> {restaurant.name}</p>
+            <p><strong>Email:</strong> {restaurant.email}</p>
+            <p><strong>Password:</strong> {restaurant.password}</p>
+            <p><strong>Phone:</strong> {restaurant.phone}</p>
+            <p><strong>Address:</strong> {restaurant.address}</p>
+            <p><strong>Owner:</strong> {restaurant.ownerName}</p>
+            <p><strong>Opening Time:</strong> {restaurant.openingTime}</p>
+            <p><strong>Closing Time:</strong> {restaurant.closingTime}</p>
+            <p>
+              <strong>Status:</strong>{" "}
+              <span className={openStatus ? "open" : "closed"}>
+                {openStatus ? "Open Now" : "Closed Now"}
+              </span>
+            </p>
+          </div>
 
-          <p>
-  <strong>Status:</strong>{" "}
-  <span style={{ color: openStatus ? "green" : "red" }}>
-    {openStatus ? "Open Now" : "Closed Now"}
-  </span>
-</p>
-
-          <button onClick={() => setEditMode(true)}>Edit</button>
-          <button onClick={handleDelete} style={{ backgroundColor: "red", color: "white" }}>Delete</button>
-        </>
+          <div className="button-group">
+            <button onClick={() => setEditMode(true)} className="edit-button">Edit</button>
+            <button onClick={handleDelete} className="delete-button">Delete</button>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../../styles/g_AddRestaurantForm.css";
+import "../../styles/g_RestaurantLoginForm.css";
 
 function RestaurantLogin() {
   const [name, setName] = useState("");
@@ -19,16 +19,16 @@ function RestaurantLogin() {
         }
       );
 
-       // Clear existing garbage values first
-    localStorage.removeItem("restaurantId");
+      // Clear existing garbage values first
+      localStorage.removeItem("restaurantId");
       console.log("Login response:", response.data); // Log the entire response
 
       // After successful login response
       console.log(response.data.id);
-       
-    // Set fresh values
-    localStorage.setItem("restaurantId", response.data.id.toString()); // Force string
-    localStorage.setItem("restaurantName", response.data.name);
+
+      // Set fresh values
+      localStorage.setItem("restaurantId", response.data.id.toString()); // Force string
+      localStorage.setItem("restaurantName", response.data.name);
 
       //if (response.data.status === "pending") {
       // setErrorMessage(
@@ -36,45 +36,52 @@ function RestaurantLogin() {
       //  );
       //  } else if (response.data.status === "approved") {
       // Successful login
-       // Ensure data is stored before navigating
-       await new Promise(resolve => setTimeout(resolve, 0));
-    
-       navigate("/owner/dashboard");
-     } catch (error) {
-       setErrorMessage("Invalid credentials or something went wrong.");
-     }
-   };
+      // Ensure data is stored before navigating
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      navigate("/owner/dashboard");
+    } catch (error) {
+      setErrorMessage("Invalid credentials or something went wrong.");
+    }
+  };
 
   return (
-    <div className="form-container">
-      <h2>Restaurant Login</h2>
-      <div className="form-group">
-        <label>Restaurant Name</label>
+    <div className="rlf-container">
+      <h2 className="rlf-title">Restaurant Login</h2>
+      <div className="rlf-group">
+        <label className="rlf-label">Restaurant Name</label>
         <input
           type="text"
+          className="rlf-input"
           placeholder="Restaurant Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
 
-      <div className="form-group">
-        <label>Password</label>
+      <div className="rlf-group">
+        <label className="rlf-label">Password</label>
         <input
           type="password"
+          className="rlf-input"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
-      <button onClick={handleLogin}>Login</button>
+     
 
       {errorMessage && <p className="error">{errorMessage}</p>}
 
+      <button className="rlf-btn" onClick={handleLogin}>
+        Login
+      </button>
+
+      {errorMessage && <p className="rlf-error">{errorMessage}</p>}
+
       <button
-        className="submit-btn"
-        style={{ marginTop: "16px", background: "#6c63ff" }}
+        className="rlf-btn rlf-btn-secondary"
         onClick={() => navigate("/createrestaurant")}
       >
         Don't you register the restaurant? Register restaurant
