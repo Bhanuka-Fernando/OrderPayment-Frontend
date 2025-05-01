@@ -22,6 +22,7 @@ const RestaurantDetails = () => {
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({});
   const restaurantId = localStorage.getItem("restaurantId");
+  const restaurantName = localStorage.getItem("restaurantName");
 
   useEffect(() => {
     axios
@@ -31,7 +32,7 @@ const RestaurantDetails = () => {
         setFormData(res.data);
       })
       .catch((err) => console.error(err));
-  }, [restaurantId]);
+  }, [restaurantId, restaurantName]);
 
   const handleUpdate = async () => {
     try {
@@ -85,9 +86,9 @@ const RestaurantDetails = () => {
       {restaurant.image && (
         <div className="restaurant-image-container">
           <img
-            src={`${restaurant.image}?${new Date().getTime()}`} 
-            alt="Restaurant" 
-            className="restaurant-image" 
+            src={`${restaurant.image}?${new Date().getTime()}`}
+            alt="Restaurant"
+            className="restaurant-image"
           />
         </div>
       )}

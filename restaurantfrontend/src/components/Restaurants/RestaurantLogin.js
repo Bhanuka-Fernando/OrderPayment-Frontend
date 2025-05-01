@@ -18,17 +18,12 @@ function RestaurantLogin() {
           password,
         }
       );
+      const { token, id, name: restaurantName } = response.data;
 
-      // Clear existing garbage values first
-      localStorage.removeItem("restaurantId");
-      console.log("Login response:", response.data); // Log the entire response
-
-      // After successful login response
-      console.log(response.data.id);
-
-      // Set fresh values
-      localStorage.setItem("restaurantId", response.data.id.toString()); // Force string
-      localStorage.setItem("restaurantName", response.data.name);
+     // Store token securely (use HttpOnly cookies in production)
+    localStorage.setItem("restaurantToken", token);
+    localStorage.setItem("restaurantId", id);
+    localStorage.setItem("restaurantName", restaurantName);
 
       //if (response.data.status === "pending") {
       // setErrorMessage(

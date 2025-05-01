@@ -2,8 +2,9 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import "../../styles/g_MenuItemTable.css";
 import EditMenuItemForm from "./EditMenuItemForm";
+import AddMenuItemForm from "./AddMenuItemForm";
 
-const MenuItemTable = ({ restaurantId }) => {
+const MenuItemTable = ({ restaurantId , restaurantName}) => {
   const [menuItems, setMenuItems] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
 
@@ -35,6 +36,7 @@ const MenuItemTable = ({ restaurantId }) => {
   return (
     <div className="table-container">
       <h2>🍽️ Menu Items</h2>
+      <AddMenuItemForm restaurantId={restaurantId} restaurantName={restaurantName}></AddMenuItemForm>
       {editingItem && (
         <EditMenuItemForm
           item={editingItem}

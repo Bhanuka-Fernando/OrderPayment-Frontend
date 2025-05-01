@@ -4,6 +4,8 @@ import '../../styles/g_Dashboard.css';
 
 const Dashboard = () => {
   const restaurantId = localStorage.getItem("restaurantId");
+  const restaurantName = localStorage.getItem("restaurantName");
+  console.log("restaurantName=",restaurantName);
 
   // Example stats – replace with real data as needed
   const stats = [
@@ -31,7 +33,8 @@ const Dashboard = () => {
       </div>
 
       <h2 className="dashboard-section-title">Menu Management</h2>
-      <MenuItemTable restaurantId={restaurantId} />
+      <MenuItemTable restaurantId={restaurantId} restaurantName={restaurantName} />
+      
     </div>
   );
 };

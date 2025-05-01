@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../../styles/g_AddMenuItemForm.css"
 
-const AddMenuItemForm = ({ restaurantId }) => {
+const AddMenuItemForm = ({ restaurantId, restaurantName }) => {
   const [menuItem, setMenuItem] = useState({
     name: "",
     description: "",
@@ -25,9 +25,10 @@ const AddMenuItemForm = ({ restaurantId }) => {
     const newItem = {
       ...menuItem,
       restaurantId,
+      restaurantName,
       price: priceAsNumber,
     };
-
+ console.log("restaurantName=",restaurantName);
        await axios.post("http://localhost:8081/api/menu/add", newItem);
       alert("Menu item added successfully!");
       setMenuItem({ name: "", description: "", price: "", imagePath: "" });
